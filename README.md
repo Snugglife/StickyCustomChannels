@@ -69,7 +69,9 @@ input rather than a coloured channel label like built-in channels have.
 
 ## Install
 
-Download `StickyCustomChannels-<version>.zip` from the
+Get it from
+[CurseForge](https://www.curseforge.com/wow/addons/stickycustomchannels) (or
+the CurseForge app), or download `StickyCustomChannels-<version>.zip` from the
 [Releases](https://github.com/Snugglife/StickyCustomChannels/releases) page and
 unzip it into your game's `Interface/AddOns/` folder, then restart the game.
 
