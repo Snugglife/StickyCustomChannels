@@ -28,6 +28,15 @@ whatever built-in channel you used last.
 - **Your own list.** No commands are sticky by default. Add the ones you use
   in the settings window.
 
+## Screenshots
+
+![Settings window with a command added](screenshots/settings-with-command.png)
+![Settings window with no commands](screenshots/settings-empty.png)
+
+![Minimap button tooltip](screenshots/minimap-tooltip.png)
+
+![Chat box opened with the sticky command already typed](screenshots/chat-prefilled.png)
+
 ## Usage
 
 - **Minimap button:** click it to open settings, drag it to move it around
