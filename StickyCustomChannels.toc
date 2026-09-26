@@ -1,0 +1,10 @@
+## Interface: 16001, 11508, 120100
+## Title: Sticky Custom Channels
+## Notes: Remembers addon chat commands so they stay selected, the way /p and /g do.
+## Author: snugglife
+## Version: 1.0.0
+## IconTexture: Interface\AddOns\StickyCustomChannels\media\icon
+## X-License: PolyForm-Noncommercial-1.0.0
+## SavedVariables: StickyCustomChannelsDB
+
+StickyCustomChannels.lua
