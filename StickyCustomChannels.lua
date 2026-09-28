@@ -28,17 +28,31 @@ end
 
 -- Put the sticky command (e.g. "/mychan ") into the box. ChatFrame_OpenChat sets the box text on the next frame
 -- (editBox.setText/editBox.text), so fill that in too or ours gets wiped.
+local prefillToken = 0 -- bumped to cancel a pending prefill
+
 local function Prefill(eb)
 	if not (db and db.sticky and eb) then return end
 	local prefix = db.sticky .. " "
 	if eb.setText == 1 and (eb.text == nil or eb.text == "") then
 		eb.text = prefix
 	end
+	prefillToken = prefillToken + 1
+	local token = prefillToken
 	C_Timer.After(0, function()
-		if db.sticky and eb:HasFocus() and eb:GetText() == "" then
+		if token == prefillToken and db.sticky and eb:HasFocus() and eb:GetText() == "" then
 			eb:SetText(db.sticky .. " ")
 		end
 	end)
+end
+
+-- Whisper reply opens chat the same way Enter does, so undo the prefill after it
+local function OnReplyTell()
+	prefillToken = prefillToken + 1
+	local eb = GetActiveEditBox()
+	if not (db and db.sticky and eb) then return end
+	local prefix = db.sticky .. " "
+	if eb.setText == 1 and eb.text == prefix then eb.text = "" end
+	if eb:GetText() == prefix then eb:SetText("") end
 end
 
 local function OnOpenChat(text)
@@ -310,6 +324,14 @@ f:SetScript("OnEvent", function(self, event, arg1)
 		for i = 1, NUM_CHAT_WINDOWS do HookEditBox(_G["ChatFrame" .. i .. "EditBox"]) end
 		if ChatFrame_OpenChat then hooksecurefunc("ChatFrame_OpenChat", OnOpenChat) end
 		if ChatFrameUtil and ChatFrameUtil.OpenChat then hooksecurefunc(ChatFrameUtil, "OpenChat", OnOpenChat) end
+		for _, name in ipairs({ "ChatFrame_ReplyTell", "ChatFrame_ReplyTell2" }) do
+			if _G[name] then hooksecurefunc(name, OnReplyTell) end
+		end
+		if ChatFrameUtil then
+			for _, name in ipairs({ "ReplyTell", "ReplyTell2" }) do
+				if ChatFrameUtil[name] then hooksecurefunc(ChatFrameUtil, name, OnReplyTell) end
+			end
+		end
 		CreateMinimapButton()
 	end
 end)

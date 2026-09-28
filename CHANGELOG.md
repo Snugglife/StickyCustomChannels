@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+
+- Fixed: the whisper reply key no longer puts the sticky command in front of
+  your reply.
+
 ## 1.0.0
 
 First release.

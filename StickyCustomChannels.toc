@@ -2,7 +2,7 @@
 ## Title: Sticky Custom Channels
 ## Notes: Remembers addon chat commands so they stay selected, the way /p and /g do.
 ## Author: snugglife
-## Version: 1.0.0
+## Version: 1.0.1
 ## IconTexture: Interface\AddOns\StickyCustomChannels\media\icon
 ## X-License: PolyForm-Noncommercial-1.0.0
 ## SavedVariables: StickyCustomChannelsDB
